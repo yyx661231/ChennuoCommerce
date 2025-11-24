@@ -9,9 +9,9 @@ interface ContactModalProps {
 const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   const [copied, setCopied] = useState(false);
   const [mode, setMode] = useState<'qr' | 'id'>('qr'); // Default to QR mode
-  const wechatId = "at1ol881231";
+  const wechatId = "cn2618ovo";
   const avatarUrl = "https://i.postimg.cc/LsW-P0pFd/93c2b971e48bcaab61232eb4d9ac3ba2.jpg";
-  const qrCodeUrl = "https://i.postimg.cc/TwWDz4f7/55684b1b-4968-4378-b980-9fd83ef0cf1c.png";
+  const qrCodeUrl = "https://i.ibb.co/XZzdL7Bt/dcde27d3-a25d-4c35-8c01-b47194d2177a.png";
 
   if (!isOpen) return null;
 

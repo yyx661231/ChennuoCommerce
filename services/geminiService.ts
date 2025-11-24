@@ -68,7 +68,7 @@ const getDemoResponse = (message: string): string => {
   }
 
   if (lowerMsg.includes('微信') || lowerMsg.includes('联系') || lowerMsg.includes('加入')) {
-    return "欢迎加入！您可以点击页面右上角的“立即加入”按钮，或者直接添加晨诺本人微信号：at1ol881231（记得备注“来意”哦），我们会在微信上给您发详细资料～🤝";
+    return "欢迎加入！您可以点击页面右上角的“立即加入”按钮，或者直接添加晨诺本人微信号：cn2618ovo（记得备注“来意”哦），我们会在微信上给您发详细资料～🤝";
   }
 
   if (lowerMsg.includes('你好') || lowerMsg.includes('hi') || lowerMsg.includes('在吗')) {
@@ -76,7 +76,7 @@ const getDemoResponse = (message: string): string => {
   }
   
   // Default fallback
-  return "这个问题比较专业，小橙子建议您直接添加晨诺本人微信 at1ol881231 详细咨询，以便给您最准确的针对性解答哦！🍊";
+  return "这个问题比较专业，小橙子建议您直接添加晨诺本人微信 cn2618ovo 详细咨询，以便给您最准确的针对性解答哦！🍊";
 };
 
 export const sendMessageToLittleOrange = async (
