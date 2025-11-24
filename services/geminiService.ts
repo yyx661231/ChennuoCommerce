@@ -4,20 +4,22 @@ import { ChatMessage, ChatRole } from "../types";
 // Safe access to API Key for both Node (preview) and Vite (production) environments
 const getApiKey = () => {
   let key = '';
-  // Try process.env first (Node/Polyfilled)
+  // 1. Try Vite env vars (Preferred for frontend)
   try {
-    if (typeof process !== 'undefined' && process.env?.API_KEY) {
-      key = process.env.API_KEY;
-    }
+    // @ts-ignore
+    if (import.meta.env.VITE_API_KEY) key = import.meta.env.VITE_API_KEY;
+    // @ts-ignore
+    else if (import.meta.env.API_KEY) key = import.meta.env.API_KEY;
   } catch (e) {
     // ignore
   }
 
-  // Fallback to Vite env vars if process didn't work or returned empty
+  // 2. Fallback to process.env (Node/Polyfilled)
   if (!key) {
     try {
-      // @ts-ignore - import.meta is a Vite/ESM feature
-      key = import.meta.env.VITE_API_KEY || import.meta.env.API_KEY || '';
+      if (typeof process !== 'undefined' && process.env?.API_KEY) {
+        key = process.env.API_KEY;
+      }
     } catch (e) {
       // ignore
     }
