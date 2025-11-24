@@ -10,8 +10,8 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   const [copied, setCopied] = useState(false);
   const [mode, setMode] = useState<'qr' | 'id'>('qr'); // Default to QR mode
   const wechatId = "at1ol881231";
-  const avatarUrl = "https://mmbiz.qpic.cn/sz_mmbiz_jpg/afX6tFLZLS9AjiaqdIbkhMnB2ETQ49aRGdv95oNvic6ZHdlu6rumI8kwLu4eLic9nzIEmA2lVLhErSJuAU373d0dg/640?wx_fmt=jpeg&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1";
-  const qrCodeUrl = "https://mmbiz.qpic.cn/sz_mmbiz_png/afX6tFLZLS9AjiaqdIbkhMnB2ETQ49aRGN41jge4QOdTxNbEwm9j8xVic6pha5ks6wg5xSr35Tz7PMLxzzBYBjaQ/640?wx_fmt=png&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0";
+  const avatarUrl = "https://a1.qpic.cn/psc?/V12Ps2vU2dQyQP/IoAt0TAZs8Yc38Jr9jGXIVgymNUZn5IRQdOnyZYm.E5o4xq6TXuj9HxJT2mlh57fUYAu*vF6XvPOHTlz3f0YBw!!/b&ek=1&kp=1&pt=0&bo=rAOsA6wDrAMWADA!&tl=1&vuin=3055473381&tm=1763974800&dis_t=1763977771&dis_k=186a7dc8ef2ab7e0216d744bc8c67d5d&sce=50-1-1&rf=viewer_311";
+  const qrCodeUrl = "https://a1.qpic.cn/psc?/V12Ps2vU2dQyQP/bqQfVz5yrrGYSXMvKr.cqfAGY*4knO6QcawM2p4zbqAhbQH0dgsPRvrvSa8zu.JqCPSvlXv1WAncRpJd*DHi9yrWxgP2Fa*lgxq27f*OI5k!/b&ek=1&kp=1&pt=0&bo=QgJCAkICQgIWADA!&tl=3&vuin=3055473381&tm=1763974800&dis_t=1763977766&dis_k=cb398383325f3aab1892c4910cfa5112&sce=60-4-3&rf=viewer_311";
 
   if (!isOpen) return null;
 
