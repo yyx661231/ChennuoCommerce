@@ -10,8 +10,8 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   const [copied, setCopied] = useState(false);
   const [mode, setMode] = useState<'qr' | 'id'>('qr'); // Default to QR mode
   const wechatId = "at1ol881231";
-  const avatarUrl = "https://a1.qpic.cn/psc?/V12Ps2vU2dQyQP/IoAt0TAZs8Yc38Jr9jGXIVgymNUZn5IRQdOnyZYm.E5o4xq6TXuj9HxJT2mlh57fUYAu*vF6XvPOHTlz3f0YBw!!/b&ek=1&kp=1&pt=0&bo=rAOsA6wDrAMWADA!&tl=1&vuin=3055473381&tm=1763974800&dis_t=1763977771&dis_k=186a7dc8ef2ab7e0216d744bc8c67d5d&sce=50-1-1&rf=viewer_311";
-  const qrCodeUrl = "https://a1.qpic.cn/psc?/V12Ps2vU2dQyQP/bqQfVz5yrrGYSXMvKr.cqfAGY*4knO6QcawM2p4zbqAhbQH0dgsPRvrvSa8zu.JqCPSvlXv1WAncRpJd*DHi9yrWxgP2Fa*lgxq27f*OI5k!/b&ek=1&kp=1&pt=0&bo=QgJCAkICQgIWADA!&tl=3&vuin=3055473381&tm=1763974800&dis_t=1763977766&dis_k=cb398383325f3aab1892c4910cfa5112&sce=60-4-3&rf=viewer_311";
+  const avatarUrl = "https://i.postimg.cc/LsW-P0pFd/93c2b971e48bcaab61232eb4d9ac3ba2.jpg";
+  const qrCodeUrl = "https://i.postimg.cc/TwWDz4f7/55684b1b-4968-4378-b980-9fd83ef0cf1c.png";
 
   if (!isOpen) return null;
 
