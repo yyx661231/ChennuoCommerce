@@ -25,12 +25,6 @@ const getApiKey = () => {
   return key;
 };
 
-const API_KEY = getApiKey();
-
-// Initialize the client only if the key exists to avoid immediate errors, 
-// though actual calls will fail gracefully if missing.
-const ai = new GoogleGenAI({ apiKey: API_KEY });
-
 const SYSTEM_INSTRUCTION = `
 You are "Little Orange" (小橙子), the proprietary AI e-commerce operation assistant developed by the Ce Nuo Commerce Team (晨诺电商团队). 
 Your persona is professional, encouraging, and knowledgeable about Xianyu (Idle Fish) e-commerce operations.
@@ -44,21 +38,31 @@ If asked about pricing, mention the course is currently ¥998 (Value ¥3398).
 Answer questions briefly and helpfully in Chinese.
 `;
 
+// Helper to get or create client instance lazily
+let aiInstance: GoogleGenAI | null = null;
+
+const getAiClient = (apiKey: string) => {
+  if (!aiInstance) {
+    aiInstance = new GoogleGenAI({ apiKey });
+  }
+  return aiInstance;
+};
+
 export const sendMessageToLittleOrange = async (
   history: ChatMessage[],
   newMessage: string
 ): Promise<string> => {
-  if (!API_KEY) {
-    return "API Key is missing. Please configure the environment.";
+  const apiKey = getApiKey();
+  
+  if (!apiKey) {
+    console.warn("Gemini API Key is missing");
+    return "系统提示：未配置 API Key，无法连接到 AI 小橙子。请联系管理员或稍后再试。";
   }
 
   try {
+    const ai = getAiClient(apiKey);
+    
     // Construct the history for the model
-    // Note: This simple implementation sends history as context in a fresh call 
-    // or uses chat session. Let's use a chat session structure implicitly by prompt construction 
-    // or properly using the chat API if we were maintaining stateful object.
-    // For this stateless service function, we'll instantiate a chat.
-
     const chat = ai.chats.create({
       model: 'gemini-2.5-flash',
       config: {
