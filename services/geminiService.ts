@@ -1,7 +1,31 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { ChatMessage, ChatRole } from "../types";
 
-const API_KEY = process.env.API_KEY || '';
+// Safe access to API Key for both Node (preview) and Vite (production) environments
+const getApiKey = () => {
+  let key = '';
+  // Try process.env first (Node/Polyfilled)
+  try {
+    if (typeof process !== 'undefined' && process.env?.API_KEY) {
+      key = process.env.API_KEY;
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  // Fallback to Vite env vars if process didn't work or returned empty
+  if (!key) {
+    try {
+      // @ts-ignore - import.meta is a Vite/ESM feature
+      key = import.meta.env.VITE_API_KEY || import.meta.env.API_KEY || '';
+    } catch (e) {
+      // ignore
+    }
+  }
+  return key;
+};
+
+const API_KEY = getApiKey();
 
 // Initialize the client only if the key exists to avoid immediate errors, 
 // though actual calls will fail gracefully if missing.
