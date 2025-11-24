@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { 
   ShoppingBag, 
   Users, 
@@ -29,15 +29,30 @@ import {
   Monitor
 } from 'lucide-react';
 import FeatureCard from './components/FeatureCard';
-import AiChatModal from './components/AiChatModal';
-import ContactModal from './components/ContactModal';
 import ProductCarousel from './components/ProductCarousel';
 import { Feature, ProductItem } from './types';
+
+// Lazy Load Modals to improve initial page load speed
+const AiChatModal = lazy(() => import('./components/AiChatModal'));
+const ContactModal = lazy(() => import('./components/ContactModal'));
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
+
+  // Preload critical images for Modal (Avatar & QR Code)
+  useEffect(() => {
+    const preloadImages = [
+      "https://i.postimg.cc/LsW-P0pFd/93c2b971e48bcaab61232eb4d9ac3ba2.jpg", // Avatar
+      "https://i.ibb.co/XZzdL7Bt/dcde27d3-a25d-4c35-8c01-b47194d2177a.png"  // QR Code
+    ];
+
+    preloadImages.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+    });
+  }, []);
 
   // Custom smooth scroll handler to account for fixed header
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -663,11 +678,11 @@ function App() {
         </div>
       </footer>
 
-      {/* AI Chat Modal */}
-      <AiChatModal isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
-      
-      {/* Contact Modal */}
-      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      {/* AI Chat Modal & Contact Modal Lazy Loaded */}
+      <Suspense fallback={null}>
+         <AiChatModal isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+         <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      </Suspense>
     </div>
   );
 }

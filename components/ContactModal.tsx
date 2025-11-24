@@ -74,13 +74,24 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
             {mode === 'qr' ? (
               <div className="bg-white p-4 rounded-xl mb-2 shadow-lg w-full max-w-[240px] animate-fade-in mx-auto">
                   <div className="flex items-center gap-3 mb-3 border-b border-gray-100 pb-3">
-                      <img src={avatarUrl} alt="Avatar" className="w-10 h-10 rounded-lg object-cover bg-gray-100" />
+                      <img 
+                        src={avatarUrl} 
+                        alt="Avatar" 
+                        className="w-10 h-10 rounded-lg object-cover bg-gray-100"
+                        decoding="async"
+                      />
                       <div className="text-left">
                           <div className="text-slate-900 font-bold text-sm">晨诺电商</div>
                           <div className="text-slate-500 text-xs">晨诺本人</div>
                       </div>
                   </div>
-                  <img src={qrCodeUrl} alt="QR Code" className="w-full h-auto rounded-lg" />
+                  <img 
+                    src={qrCodeUrl} 
+                    alt="QR Code" 
+                    className="w-full h-auto rounded-lg" 
+                    decoding="async"
+                    loading="eager"
+                  />
                   <div className="text-slate-400 text-xs mt-2 font-medium">使用微信扫一扫</div>
               </div>
             ) : (

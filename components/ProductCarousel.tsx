@@ -139,6 +139,8 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ items }) => {
                       src={item.image} 
                       alt={item.title} 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading={isActive ? "eager" : "lazy"}
+                      decoding="async"
                     />
                     <div className="absolute top-4 left-4 z-20">
                        <span className="px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-xs font-bold text-white border border-white/10 flex items-center gap-1">
